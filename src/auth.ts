@@ -5,19 +5,7 @@ import client from "./libs/db"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: MongoDBAdapter(client),
-  providers: [Google({
-    profile(profile) {
-      console.log(profile)
-      return {
-        id: profile.sub,
-        name: profile.name,
-        email: profile.email,
-        image: profile.picture,
-        role: profile.role ?? "user",
-        email_verified: profile.email_verified ? new Date() : undefined
-      }
-    }
-  })],
+  providers: [Google],
 })
 /*
 tinonav   : Username mongo atlas
